@@ -6,9 +6,9 @@ from modules.notifier.functions import generate_diff, split_text, get_platform_p
 # Replace TOKEN with your bot token
 bot = Bot(token='TOKEN', parse_mode=telegram.ParseMode.MARKDOWN)
 
-def send_notification(data, webhook_url):
+def send_notification(data, tel_webhook_url):
     try:
-        chat_id = webhook_url.split('/')[-1]
+        chat_id = tel_webhook_url.split('/')[-1]
         message = ""
 
         if data["isRemoved"]:
@@ -26,9 +26,9 @@ def send_notification(data, webhook_url):
     except TelegramError as e:
         print(f'Error sending message: {e}')
 
-def send_startup_message(webhook_url):
+def send_startup_message(tel_webhook_url):
     try:
-        chat_id = webhook_url.split('/')[-1]
+        chat_id = tel_webhook_url.split('/')[-1]
         message = f"🎉 Successful Start of Programs Watcher 🎉\n\nHi, welcome to ** Programs Watcher **! 🎉\nThe program has started successfully and is now waiting for a change. 🗼✨\n\n** Github page: ** https://github.com/Alikhalkhali/programs-watcher"
 
         send_message = bot.send_message(chat_id=chat_id, text=message, parse_mode=telegram.ParseMode.MARKDOWN)
